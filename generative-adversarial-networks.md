@@ -1,3 +1,17 @@
-outline of the generative-adversarial-network:
-1.generate random variables from given distribution;
-2.how to evalute the generative random variables;
+ref:何之源 知乎 GAN学习指南：从原理入门到制作生成Demo
+
+generative-adversarial networks 生成对抗网络
+target:是一种非监督式的学习方法，用于数据增强（增加样本数据容量）
+components:1.generator(生成网络);2.discriminator(对抗网络)
+
+1.generator:
+输入生成器网络的数据是噪声数据（满足均匀分布或者是正态分布），输入数据经过生成器后得到的是目标数据
+生成器的目标是生产出来的数据足以以假乱真，希望生成的图片尽量真实，能够将判别网络蒙混过关
+
+2.discriminator:
+输入对抗网络的数据由两个部分组成:一个是有生成网络生成的目标数据，第二个是实际真实数据
+对抗网络的目标是能将生成器生成的假数据一眼辨别出来，和真实数据做明确区分
+D(generator data)=0,&& D(real data)=1
+
+生成网络和对抗网络是一个动态的博弈过程，生成器企图生成以假乱真的数据将判别器欺骗，就是生成目标数据，达成数据增强的目的;
+这种网络的最后结果是达到动态平衡，生成的图片对于判别器来说不能进行有效的判别：其判别结果是0.5（既不能够判别其是真实数据，又不能判别其是假数据）
